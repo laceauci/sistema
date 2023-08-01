@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+
+
+class UserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+
+     //protected $paginationTheme = 'bootstrap';
+    //public $search;
+
+    public function index()
+    {
+        $users = User::/*where('name','LIKE','%'.$this->$search.'%')->*/paginate(10);
+
+        return view(
+            'user.index', compact('users')
+            )
+            ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $user = new User();
+        return view('user.create', compact('user'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        request()->validate(User::$rules);
+
+        $user = User::create($request->all());
+
+        return redirect()->route('user.index')
+            ->with('success', 'User created successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        return view('user.show', compact('user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        return view('user.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        request()->validate(User::$rules);
+
+        $user->update($request->all());
+
+        return redirect()->route('user.index')
+            ->with('success', 'User updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id)->delete();
+
+        return redirect()->route('user.index')
+            ->with('success', 'User deleted successfully');
+    }
+}

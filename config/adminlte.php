@@ -187,12 +187,12 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-black',
+    'classes_brand' => 'bg-light', //'bg-black',  //Color de la aprte del nombre del Menú izquierdo
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-primary elevation-4', //'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -424,28 +424,33 @@ return [
             'submenu' => [
                 [
                     'text' => 'Empleado',
-                    'route'  => 'admin.empleado.index',
+                    'route'  => 'empleado.index',
                     'icon'    => 'fas fa-fw fa-id-card',
+                    //'can'  => 'empleado.index',
                 ],
                 [
                     'text' => 'Evento',
                     'route'  => 'evento.index',
                     'icon'    => 'fas fa-fw fa-calendar-alt',
+                    'can'  => 'evento.index',
                 ],
                 [
                     'text' => 'Clientes',
                     'route'  => 'clientes.index',
                     'icon'    => 'fas fa-fw fa-user-tie',
+                    'can'  => 'clientes.index',
                 ],
                 [
                     'text' => 'Pedidos',
                     'route'  => 'pedidos.index',
                     'icon'    => 'fas fa-fw fa-list-alt',
+                    //'can'  => 'pedido.index',
                 ],
                 [
                     'text' => 'Libros',
                     'route'  => 'libros.index',
                     'icon'    => 'fas fa-fw fa-book',
+                    //'can'  => 'libros.index',
                 ],
                 /*[
                     'text' => 'Mercado',
@@ -503,11 +508,7 @@ return [
                     'icon' => 'fas fa-fw fa-user',
                 ],*/
 
-                [
-                    'text' => 'Usuarios',
-                    'route'  => 'user.index',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
+
                 [
                     'text' => 'Relación Roles-Usuario',
                     //'url'  => '#',
@@ -621,13 +622,32 @@ return [
         ],*/
         [
             'text' => 'Usuarios',
+            'route'  => 'user.index',
+            'icon' => 'fas fa-fw fa-users',
+            //'can'  => 'user.index',
+        ],
+        [
+            'text' => 'Asignar rol a Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-users',
+            'can' => 'admin.users.index',
         ],
         [
             'text' => 'Roles',
             //'url'  => '#',
             'url'  => '/roles',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Permisos',
+            //'url'  => '#',
+            'url'  => '/permissions',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Asignar permisos a roles',
+            //'url'  => '#',
+            'url'  => '/rolehaspermissions',
             'icon' => 'fas fa-fw fa-user',
         ],
         /*[

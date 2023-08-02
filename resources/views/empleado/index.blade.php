@@ -2,7 +2,7 @@
 
  @section('title', 'Empleado')
 
- @section('js')
+@section('js')
 @vite(['resources/js/app.js'])
 @endsection
 
@@ -37,7 +37,7 @@
                         {{ __('Empleado') }}
                     </span>
                     <div class="float-right">
-                        <a href="{{ route('admin.empleado.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                        <a href="{{ route('empleado.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                           {{ __('Create New') }}
                         </a>
                       </div>
@@ -63,8 +63,8 @@
                             <td>{{ $empleado->id }}</td>
 
                             <td>
-                                <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $empleado->Foto }}"
-                                    width="100" alt="" >
+                                <img class="img-thumbnail img-fluid" src="{{ asset('../storage/app/public') . '/' . $empleado->Foto }}"
+                                    width="60" alt="" >
                             </td>
 
                             <td>{{ $empleado->Nombre }}</td>
@@ -72,11 +72,11 @@
                             <td>{{ $empleado->ApellidoMaterno }}</td>
                             <td>{{ $empleado->Correo }}</td>
                             <td>
-                                <a href="{{ url('/admin/empleado/' . $empleado->id . '/edit') }}" class="btn btn-warning">
+                                <a href="{{ url('/empleado/' . $empleado->id . '/edit') }}" class="btn btn-warning">
                                     Editar
                                 </a>
                                 |
-                                <form action="{{ url('/admin/empleado/' . $empleado->id) }}" method="post" class="d-inline">
+                                <form action="{{ url('/empleado/' . $empleado->id) }}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <input type="submit" class="btn btn-danger" onclick="return confirm('¿Quieres borrar?')"

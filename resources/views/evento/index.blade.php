@@ -257,7 +257,7 @@
                     <button id="btnAgregar" class="btn btn-success">Agregar</button>
                     <button id="btnModificar" class="btn btn-warning">Modificar</button>
                     <button id="btnEliminar" class="btn btn-danger">Eliminar</button>
-                    <button id="btnCancelar" data-dismiss="modal" class="btn btn-default">Cancelar</button>
+                    <button id="btnCancelar" data-bs-dismiss="modal" class="btn btn-default">Cancelar</button>
 
                 </div>
             </div>

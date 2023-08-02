@@ -16,6 +16,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         $datos['empleados']= Empleado::paginate(10);
+        //dd($datos);
         return view('empleado.index',$datos);
     }
 
@@ -58,7 +59,7 @@ class EmpleadoController extends Controller
         Empleado::insert($datosEmpleado);
 
         //return response()->json($datosEmpleado);
-        return redirect('/admin/empleado')->with('mensaje','Empleado agregado con éxito.');
+        return redirect('/empleado')->with('mensaje','Empleado agregado con éxito.');
 
     }
 
@@ -126,7 +127,7 @@ class EmpleadoController extends Controller
 
         $empleado=Empleado::findOrFail($id);
         //return view('empleado.edit',compact('empleado'));
-        return redirect('/admin/empleado')->with('mensaje','Empleado modificado con éxito.');
+        return redirect('/empleado')->with('mensaje','Empleado modificado con éxito.');
 
     }
 
@@ -145,7 +146,7 @@ class EmpleadoController extends Controller
 
 
        //return redirect('/empleado');
-       return redirect('/admin/empleado')->with('mensaje','Empleado eliminado con éxito.');
+       return redirect('/empleado')->with('mensaje','Empleado eliminado con éxito.');
 
     }
 }

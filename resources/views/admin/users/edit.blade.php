@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin')
+@section('title', 'Asignar rol a usuarios')
 
 @section('content_header')
 <hi>Asignar un rol</hi>
@@ -32,9 +32,9 @@
     </div>
 @endforeach
 
-{!! Form::submit('Asignar roles', ['class' => 'btn btn-primary mt-2']) !!}
-
-        {!! Form::close() !!}
+{!! Form::submit('Asignar roles', ['class' => 'btn btn-success mt-2']) !!}
+<a class="btn btn-primary mt-2" href="{{ url('admin/users') }}">Regresar</a>
+{!! Form::close() !!}
 
     </div>
 </div>

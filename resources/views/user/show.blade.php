@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Email:</strong>
-                            {{ $user->name }}
+                            {{ $user->email }}
                         </div>
 
                     </div>

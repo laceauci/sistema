@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Model Has Role') }}
+                                {{ __('Asociación de roles a usuarios') }}
                             </span>
 
                              <div class="float-right">
@@ -36,11 +36,13 @@
                                     <tr>
                                         <th>No</th>
 
-										<th>Role Id</th>
+										<!--<th>Role Id</th> -->
                                         <th>Rol</th>
-										<th>Model Type</th>
-										<th>User Id</th>
-                                        <th>User</th>
+
+										<!--<th>User Id</th> -->
+                                        <th>Usuario</th>
+
+                                        <th>Class Model</th>
 
                                         <th></th>
                                     </tr>
@@ -50,13 +52,15 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 
-											<td>{{ $modelHasRole->roles->id }}</td>
+											<!-- <td>{{ $modelHasRole->roles->id }}</td> -->
                                             <td>{{ $modelHasRole->roles->name }}</td>
-											<td>{{ $modelHasRole->model_type }}</td>
-											<td>{{ $modelHasRole->users->id }}</td>
+
+											<!--<td>{{ $modelHasRole->users->id }}</td> -->
                                             <td>{{ $modelHasRole->users->name }}</td>
 
-                                            <td>
+                                            <td>{{ $modelHasRole->model_type }}</td>
+
+                                            <td align="right">
                                                 <form action="{{ route('model-has-role.destroy',$modelHasRole->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('model-has-role.show',$modelHasRole->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('model-has-role.edit',$modelHasRole->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>

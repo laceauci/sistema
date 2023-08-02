@@ -5,7 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -65,16 +67,36 @@ class User extends Authenticatable
         return 'https://picsum.photos/300/300';
     }
     public function adminlte_desc(){
-        //Devuelve una imagen random
-        return 'Administrador';
+        //Devuelve Los roles del Usuario
+
+        $users1 =
+        (User::latest()
+        ->join("model_has_roles", "model_id", "=", "users.id")
+        ->join("roles", "roles.id", "=", "model_has_roles.role_id")
+        ->select( "users.*", "roles.name as rol") )
+        ->Where('users.id', '=', Auth::user()->id)
+        ;
+//dd($user);
+
+$rol = $users1->pluck('rol');
+//$rol = Auth::user()->roles->pluck('name');    También funciona
+
+
+//dd($users1);
+        return "Mis Roles:". $rol;
+        //return 'Administrador';
     }
+
     public function adminlte_profile_url(){
         //Devuelve una imagen random
-        return 'profile/username';
+        return 'user/'.Auth::user()->id;
+        //return 'profile/username';
     }
+
     public function modelhasroles()
     {
         return $this->hasMany(ModelHasRole::class, 'model_id');
     }
+
 
 }

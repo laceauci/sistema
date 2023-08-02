@@ -1,15 +1,17 @@
 @extends('adminlte::page')
 
-@section('title', 'Admin')
+@section('title', 'Users')
 
 @section('content_header')
 <div class="card-header">
     Listado de usuarios
     </div>
 @stop
-
+@livewireStyles
 @section('content')
 @livewire('admin.users-index')
+
+@livewireScripts
 @stop
 
 @section('css')
@@ -17,7 +19,7 @@
 @stop
 
 @section('js')
-<script>console.log('Hi');</script>
+@vite(['resources/js/app.js'])
 @stop
 
 @section('footer')

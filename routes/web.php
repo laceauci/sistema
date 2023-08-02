@@ -19,6 +19,8 @@ use App\Http\Livewire\Nomensaladas;
 use App\Http\Livewire\Nominfusiones;
 use App\Http\Livewire\Nompescadosmariscos;
 use App\Http\Livewire\Nompostres;
+use App\Http\Livewire\Permissions;
+use App\Http\Livewire\RoleHasPermissions;
 use App\Http\Livewire\Roles;
 
 //use App\Http\Controllers\RolesController;
@@ -47,25 +49,21 @@ Route::get('/evento', 'EventoController@index')->middleware('auth');*/
 //Route::get('/empleado/create', [EmpleadoController::class, 'create'])->middleware('auth');
 
 //Route::resource('empleado', EmpleadoController::class)->middleware('auth');
-Route::resource('evento', EventoController::class)->middleware('auth');
-Route::resource('clientes', ClienteController::class)->middleware('auth');
-Route::resource('pedidos', PedidoController::class)->middleware('auth');
-Route::resource('libros', LibroController::class)->middleware('auth');
-Route::resource('user', UserController::class)->middleware('auth');
-//Route::resource('role', RoleController::class)->middleware('auth');
-Route::resource('model-has-role', ModelHasRoleController::class)->middleware('auth');
+
 //Route::resource('roles', RolesController::class)->middleware('auth');
 
 //Route::resource('admin', HomeController::class)->middleware('auth');
 
-Route::get('/home', [EmpleadoController::class, 'index'])->name('home')->middleware('auth');
+//Route::get('/home', [EmpleadoController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes(['register' => false, 'reset' => false, 'verify' => false]);
 //Auth::routes(['register' => false, 'reset' => false]);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [EmpleadoController::class, 'index'])->name('home');
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('empleado', EmpleadoController::class)->names('empleado')->middleware('auth');
+    //Route::resource('empleado', Roles::class)->middleware('auth');
+    //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     //Route Hooks - Do no Delete//
     Route::resource('roles', Roles::class)->middleware('auth');
@@ -77,6 +75,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('nominfusiones', Nominfusiones::class)->middleware('auth');
     Route::resource('nompescadosmariscos', Nompescadosmariscos::class)->middleware('auth');
     Route::resource('nompostres', Nompostres::class)->middleware('auth');
+
+    Route::resource('permissions', Permissions::class)->middleware('auth');
+    Route::resource('rolehaspermissions', RoleHasPermissions::class)->middleware('auth');
+
+    Route::resource('evento', EventoController::class)->middleware('auth');
+    Route::resource('clientes', ClienteController::class)->middleware('auth');
+    Route::resource('pedidos', PedidoController::class)->middleware('auth');
+    Route::resource('libros', LibroController::class)->middleware('auth');
+    Route::resource('user', UserController::class)->middleware('auth');
+    Route::resource('model-has-role', ModelHasRoleController::class)->middleware('auth');
 
 });
 
